@@ -23,6 +23,24 @@
              "handler" (reagent/reactify-component (:handler params)))
            args)))
 
+(defn NotFoundRoute
+  [params & args]
+  (let [default (.createFactory js/React js/ReactRouter.NotFoundRoute)]
+    (apply default
+           (js-obj
+             "handler" (reagent/reactify-component (:handler params)))
+           args)))
+
+(defn RedirectRoute
+  [params & args]
+  (let [default (.createFactory js/React js/ReactRouter.Redirect)]
+    (apply default
+           (js-obj
+             "from" (:from params)
+             "to"   (:to params)
+             )
+           args)))
+
 
 (defn- router-cbk
   [elem handler state]
