@@ -1,0 +1,16 @@
+/bower_components
+/target
+/classes
+/checkouts
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/.lein-*
+/.nrepl-port
+/resources/public/js
+/out
+/.repl
+system.properties
+figwheel_server.log
+.repl-*
