@@ -70,24 +70,6 @@ The params in the jsObject are accessed as any other jsObject in clojurescript.
 
 Note that if params are used in a component and the params object changes the component tree will be rerendered from there downwards. This is probably something that could be made more efficent...
 
-### A note on the inclusion of react-router
-
-Currently react-router is not packaged for CLJSJS hence at the current stage the project simply includes the current version of the react-router and pulls it in as a `foreign-lib`
-
-in `project.clj`
-
-```clojurescript
-:foreign-libs  [{:file "./resources/vendor/react-router.js"
-  :provides  ["react-router"]}]
-```
-
-we can't use react-router from a cdn and include it in the `index.html` template because reagent includes its own version of react and all the app is bundled in a **single** js file.
-
-The `ReactRouter` has to be present before the app code loads but after reagent loads, so far the only mechanism I've found is adding the router as a foreing lib and requiring it in the react-router namespace.
-
-As usual feedback and suggestions are welcome!
-
-
 ## Whishlist/TODO
 
 Ideally the routes definition api would be more close to normal reagent templates
