@@ -1,7 +1,7 @@
 (ns reagent-react-router.core
    (:require [reagent.core :as reagent :refer [atom]]
              [clojure.walk :refer  [walk postwalk]]
-             [react-router :as router])) ;// this should become [cljsjs.react-router]
+             [cljsjs.react-router]))
 
 (def Link (reagent/adapt-react-class js/ReactRouter.Link))
 (def RouteHandler (reagent/adapt-react-class js/ReactRouter.RouteHandler))
