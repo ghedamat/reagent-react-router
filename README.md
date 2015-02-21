@@ -27,18 +27,29 @@ The current implementation provides a `Route` and a `DefaultRoute` function to b
 
 example:
 
-```clojurescript
+```clojure
   (def routes
     (Route {:name "app" :path "/" :handler app-page}
       (Route {:name "about" :path "about" :handler about-page}
         (Route {:name "nested" :path ":post_id" :handler nested-page}
           (Route {:name "deeply-nested" :path ":comment_id" :handler deeply-nested-page})))
       (DefaultRoute {:handler default-page-meta})))
+
+  ;; or
+
+  (defroutes [:route "/" app-page
+              [:route "about" about-page
+               [:route ":post_id" nested-page
+                [:route ":comment_id" deeply-nested-page]]]
+              [:redirect "red" "about"]
+              [:not-found not-found-page]
+              [:default-route default-page-meta]]))
+
 ```
 
 Finally a `run-router` function is provided to boot up the app
 
-```clojurscript
+```clojure
 (defn init! []
   (run-router document.body routes))
 ```
@@ -53,23 +64,6 @@ any reagent component nested under the route will receive a `params` jsObject, e
 The params in the jsObject are accessed as any other jsObject in clojurescript.
 
 Note that if params are used in a component and the params object changes the component tree will be rerendered from there downwards. This is probably something that could be made more efficent...
-
-### A note on the inclusion of react-router
-
-Currently react-router is not packaged for CLJSJS hence at the current stage the project simply includes the current version of the react-router and pulls it in as a `foreign-lib`
-
-in `project.clj`
-
-```clojurescript
-:foreign-libs  [{:file "./resources/vendor/react-router.js"
-  :provides  ["react-router"]}]
-```
-
-we can't use react-router from a cdn and include it in the `index.html` template because reagent includes its own version of react and all the app is bundled in a **single** js file.
-
-The `ReactRouter` has to be present before the app code loads but after reagent loads, so far the only mechanism I've found is adding the router as a foreing lib and requiring it in the react-router namespace.
-
-As usual feedback and suggestions are welcome!
 
 
 ## Whishlist/TODO
