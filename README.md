@@ -74,20 +74,11 @@ As usual feedback and suggestions are welcome!
 
 ## Whishlist/TODO
 
-Ideally the routes definition api would be more close to normal reagent templates
-
-```clojurscript
-  (defn routes[]
-    [Route {:name "app" :path "/" :handler app-page}
-     [Route {:name "about" :path "about" :handler about-page}]])
-```
-
-but I'm still not clear on how to get there
+`defroutes` is being added to have a more reagent-like api, still has some quirks.
 
 I haven't used this in any real apps yet so it's quite likely that some of the use cases covered by the router are missing/won't work properly.
 
 * Query params support hasn't been tested at all
-* Implement `NotFoundRoute` and `Redirect`
 
 
 # Feedback
