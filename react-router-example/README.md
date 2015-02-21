@@ -17,9 +17,6 @@ clone the [reagent-react-router](https://github.com/ghedamat/reagent-react-route
 then clone this repo
 
 ```
-# first run (you need npm and bower), then
-bower install
-
 # in a terminal (runs the server)
 lein ring server
 
